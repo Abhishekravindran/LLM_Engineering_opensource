@@ -1,6 +1,6 @@
 # LLM Engineering — Open Source
 
-A hands-on, community-driven repo for learning **LLM Engineering** — from beginner fundamentals to advanced techniques. Updated weekly with new implementations, notebooks, and community contributions.
+A hands-on, community-driven repo for learning **LLM Engineering** — from beginner fundamentals to advanced techniques. Updated weekly with new implementations, notebooks, and community contributions!.
 
 Whether you're getting started with prompting and RAG or fine-tuning frontier and local models, this repo is meant to be a living, practical reference — built together with the community.
 
