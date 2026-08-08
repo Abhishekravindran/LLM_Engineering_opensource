@@ -1,4 +1,4 @@
-# LLM Engineering — Open Source
+# LLM Engineering — Open Source for students and early learning professionals
 
 A hands-on, community-driven repo for learning **LLM Engineering** — from beginner fundamentals to advanced techniques. Updated weekly with new implementations, notebooks, and community contributions.
 
