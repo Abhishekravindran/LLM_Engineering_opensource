@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "question": "What are Python variables?"
+    },
+    {
+        "id": 2,
+        "question": "What is dynamic typing in Python?"
+    },
+    {
+        "id": 3,
+        "question": "What is the difference between lists and tuples in Python?"
+    },
+    {
+        "id": 4,
+        "question": "Why are tuples immutable?"
+    },
+    {
+        "id": 5,
+        "question": "What are Python dictionaries used for?"
+    },
+    {
+        "id": 6,
+        "question": "What is type casting in Python?"
+    },
+    {
+        "id": 7,
+        "question": "How are Python lists different from sets?"
+    },
+    {
+        "id": 8,
+        "question": "How do you access values in a Python dictionary?"
+    },
+    {
+        "id": 9,
+        "question": "When should you use a tuple instead of a list?"
+    },
+    {
+        "id": 10,
+        "question": "What are the main built-in data types in Python?"
+    }
+]
