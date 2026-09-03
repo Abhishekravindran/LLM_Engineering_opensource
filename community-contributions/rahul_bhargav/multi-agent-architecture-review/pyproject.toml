@@ -1,0 +1,23 @@
+[project]
+name = "multi-agent-architecture-review"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "RahulBhargavR2", email = "rahulbhargavrgk@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "autogen-agentchat>=0.7.5",
+    "autogen-ext[openai]>=0.7.5",
+    "crewai>=1.15.18",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.11",
+]
+
+[project.scripts]
+multi-agent-architecture-review = "multi_agent_architecture_review:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
