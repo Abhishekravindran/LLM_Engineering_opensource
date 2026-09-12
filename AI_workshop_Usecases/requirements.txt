@@ -1,0 +1,7 @@
+ollama
+pydantic
+transformers
+torch
+accelerate
+numba
+nvcc4jupyter
