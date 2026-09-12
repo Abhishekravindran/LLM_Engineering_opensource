@@ -1,0 +1,3 @@
+pyautogen
+pydantic-ai
+ollama
