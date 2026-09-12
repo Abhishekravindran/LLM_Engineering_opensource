@@ -1,0 +1,11 @@
+openai-agents
+mcp
+duckduckgo-search
+python-dotenv
+pydantic
+gradio
+plotly
+pandas
+fastapi
+uvicorn
+requests
