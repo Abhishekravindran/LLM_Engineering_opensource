@@ -5,9 +5,9 @@ from __future__ import annotations
 import ast
 import operator as op
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
-mcp = FastMCP("local-tools")
+mcp = MCPServer("local-tools")
 
 _ALLOWED = {
     ast.Add: op.add,
