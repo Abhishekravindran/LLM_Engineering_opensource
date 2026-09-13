@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer 
 
-mcp = FastMCP("notes")
+mcp = MCPServer("notes")
 
 _NOTES: list[str] = []
 

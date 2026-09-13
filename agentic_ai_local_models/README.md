@@ -57,6 +57,11 @@ whole repo is built on.
 3. **Local PC track:** follow `setup/SETUP-local-pc.md` (install Ollama,
    pull a model, set up a Python environment).
 4. Start in `1_foundations/lab1_intro_and_first_call.ipynb`.
+5. Install uv and run
+```bash
+ uv sync
+```
+you can skip using `pip install -r requirements.txt` in each dir 
 
 ## Community contributions
 

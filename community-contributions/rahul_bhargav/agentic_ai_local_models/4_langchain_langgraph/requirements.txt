@@ -1,0 +1,8 @@
+langchain
+langchain-ollama
+langchain-huggingface
+langgraph
+transformers
+torch
+accelerate
+ollama
