@@ -1,0 +1,31 @@
+[project]
+name = "agentic-ai-local-models"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "RahulBhargavR2", email = "rahulbhargavrgk@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "autogen>=0.14.1",
+    "crewai>=1.6.1",
+    "crewai-tools>=0.0.1",
+    "grandalf>=0.8",
+    "langchain>=1.4.0",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.11",
+    "litellm>=1.83.0",
+    "mcp>=2.2.0",
+    "ollama>=0.6.2",
+    "openai-agents>=0.22.2",
+    "pydantic>=2.13.5",
+    "pydantic-ai>=2.38.0",
+]
+
+[project.scripts]
+agentic-ai-local-models = "agentic_ai_local_models:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"

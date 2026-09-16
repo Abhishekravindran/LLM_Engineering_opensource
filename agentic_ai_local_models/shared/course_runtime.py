@@ -22,18 +22,19 @@ from pathlib import Path
 from typing import Any, Callable
 
 
-HF_MODEL_DEFAULT = os.environ.get("COURSE_HF_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
-HF_MODEL_CPU = os.environ.get("COURSE_HF_MODEL_CPU", "Qwen/Qwen2.5-0.5B-Instruct")
-OLLAMA_MODEL_DEFAULT = os.environ.get("COURSE_OLLAMA_MODEL", "llama3.2:3b")
+# HF_MODEL_DEFAULT = os.environ.get("COURSE_HF_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
+# HF_MODEL_CPU = os.environ.get("COURSE_HF_MODEL_CPU", "Qwen/Qwen2.5-0.5B-Instruct")
+OLLAMA_MODEL_DEFAULT = os.environ.get("COURSE_OLLAMA_MODEL", "qwen2.5:3b")
 COMPAT_PORT = int(os.environ.get("COURSE_COMPAT_PORT", "8765"))
 
 
 def detect_backend(force: str | None = None) -> str:
-    if force in {"huggingface", "ollama"}:
-        return force
-    in_colab = importlib.util.find_spec("google.colab") is not None
-    return "huggingface" if in_colab else "ollama"
-
+    # Forcing it to return ollama
+    # if force in {"huggingface", "ollama"}:
+    #     return force
+    # in_colab = importlib.util.find_spec("google.colab") is not None
+    # return "huggingface" if in_colab else "ollama"
+    return "ollama"
 
 def find_course_root() -> Path:
     here = Path.cwd().resolve()
@@ -73,13 +74,18 @@ _ALLOWED_OPS = {
 }
 
 
-def _safe_eval(node: ast.AST) -> float:
+def _safe_eval(node: ast.AST) -> int | float:
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
         return node.value
+
     if isinstance(node, ast.BinOp) and type(node.op) in _ALLOWED_OPS:
-        return _ALLOWED_OPS[type(node.op)](_safe_eval(node.left), _safe_eval(node.right))
+        return _ALLOWED_OPS[type(node.op)](
+            _safe_eval(node.left), _safe_eval(node.right)
+        )
+
     if isinstance(node, ast.UnaryOp) and type(node.op) in _ALLOWED_OPS:
         return _ALLOWED_OPS[type(node.op)](_safe_eval(node.operand))
+
     raise ValueError("unsupported expression")
 
 
@@ -90,6 +96,13 @@ def calculator(expression: str) -> str:
         return str(_safe_eval(tree.body))
     except Exception as exc:
         return f"Error: {exc}"
+
+
+def reverse_str(text: str) -> str:
+    try:
+        return text[::-1]
+    except Exception as exc:
+        return str(exc)
 
 
 MOCK_KB = {
@@ -157,6 +170,12 @@ TOOL_SCHEMAS = [
         "description": "Return today's date (YYYY-MM-DD).",
         "parameters": {"type": "object", "properties": {}, "required": []},
     },
+    {
+        "name": "reverse_str",
+        "description": "Reverses a given string",
+        "parameters": {"type": "object", "properties": {"text":{"type":"string"}}, "required": ["text"]},
+    },
+    
 ]
 
 
@@ -359,13 +378,13 @@ def _hf_chat_raw(messages: list[dict[str, Any]], max_tokens: int, temperature: f
 
 
 def print_banner(week: str, lab: str) -> str:
-    backend = detect_backend()
-    in_colab = importlib.util.find_spec("google.colab") is not None
+    backend = detect_backend("ollama")
+    in_colab = None
     print(f"{week} / {lab}")
-    print(f"Environment: {'Google Colab' if in_colab else 'Local PC'}")
+    # print(f"Environment: {'Google Colab' if in_colab else 'Local PC'}")
     print(f"Backend: {backend}")
     if backend == "huggingface":
         print("Tip: Runtime → Change runtime type → T4 GPU for faster generation.")
     else:
-        print("Need Ollama running: `ollama serve` and `ollama pull llama3.2:3b`")
+        print("Need Ollama running: `ollama serve` and `ollama pull llama3.2:1b`")
     return backend
